@@ -7,15 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		942E58B9259C6F4C0079617E /* wakeUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942E58B8259C6F4C0079617E /* wakeUp.swift */; };
+		943184B4259B4B920092F333 /* sleepTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943184B3259B4B920092F333 /* sleepTime.swift */; };
+		943184B7259B66650092F333 /* kaminari.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 943184B6259B66650092F333 /* kaminari.mp3 */; };
 		944191E6259962E600F91D2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944191E5259962E600F91D2E /* AppDelegate.swift */; };
 		944191E8259962E600F91D2E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944191E7259962E600F91D2E /* SceneDelegate.swift */; };
 		944191EA259962E600F91D2E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944191E9259962E600F91D2E /* ViewController.swift */; };
 		944191ED259962E600F91D2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 944191EB259962E600F91D2E /* Main.storyboard */; };
 		944191EF259962E600F91D2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 944191EE259962E600F91D2E /* Assets.xcassets */; };
 		944191F2259962E600F91D2E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 944191F0259962E600F91D2E /* LaunchScreen.storyboard */; };
+		9450A35C259EB4E600E9810A /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9450A35B259EB4E600E9810A /* Notification.swift */; };
+		94768373259C21FC001017B2 /* Timerr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94768372259C21FC001017B2 /* Timerr.swift */; };
+		94768377259C46D9001017B2 /* memo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94768376259C46D9001017B2 /* memo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		942E58B8259C6F4C0079617E /* wakeUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wakeUp.swift; sourceTree = "<group>"; };
+		943184B3259B4B920092F333 /* sleepTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sleepTime.swift; sourceTree = "<group>"; };
+		943184B6259B66650092F333 /* kaminari.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = kaminari.mp3; sourceTree = "<group>"; };
 		944191E2259962E600F91D2E /* AlarmAPP4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlarmAPP4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		944191E5259962E600F91D2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		944191E7259962E600F91D2E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +33,9 @@
 		944191EE259962E600F91D2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		944191F1259962E600F91D2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		944191F3259962E600F91D2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9450A35B259EB4E600E9810A /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		94768372259C21FC001017B2 /* Timerr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timerr.swift; sourceTree = "<group>"; };
+		94768376259C46D9001017B2 /* memo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,10 +71,16 @@
 				944191E5259962E600F91D2E /* AppDelegate.swift */,
 				944191E7259962E600F91D2E /* SceneDelegate.swift */,
 				944191E9259962E600F91D2E /* ViewController.swift */,
+				943184B3259B4B920092F333 /* sleepTime.swift */,
+				942E58B8259C6F4C0079617E /* wakeUp.swift */,
+				94768372259C21FC001017B2 /* Timerr.swift */,
+				9450A35B259EB4E600E9810A /* Notification.swift */,
+				943184B6259B66650092F333 /* kaminari.mp3 */,
 				944191EB259962E600F91D2E /* Main.storyboard */,
 				944191EE259962E600F91D2E /* Assets.xcassets */,
 				944191F0259962E600F91D2E /* LaunchScreen.storyboard */,
 				944191F3259962E600F91D2E /* Info.plist */,
+				94768376259C46D9001017B2 /* memo.swift */,
 			);
 			path = AlarmAPP4;
 			sourceTree = "<group>";
@@ -126,6 +144,7 @@
 			files = (
 				944191F2259962E600F91D2E /* LaunchScreen.storyboard in Resources */,
 				944191EF259962E600F91D2E /* Assets.xcassets in Resources */,
+				943184B7259B66650092F333 /* kaminari.mp3 in Resources */,
 				944191ED259962E600F91D2E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,9 +156,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				942E58B9259C6F4C0079617E /* wakeUp.swift in Sources */,
 				944191EA259962E600F91D2E /* ViewController.swift in Sources */,
 				944191E6259962E600F91D2E /* AppDelegate.swift in Sources */,
+				943184B4259B4B920092F333 /* sleepTime.swift in Sources */,
+				9450A35C259EB4E600E9810A /* Notification.swift in Sources */,
+				94768373259C21FC001017B2 /* Timerr.swift in Sources */,
 				944191E8259962E600F91D2E /* SceneDelegate.swift in Sources */,
+				94768377259C46D9001017B2 /* memo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +313,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D453TST7T9;
 				INFOPLIST_FILE = AlarmAPP4/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -296,7 +321,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Iseryuiseki.AlarmAPP4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -308,6 +333,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D453TST7T9;
 				INFOPLIST_FILE = AlarmAPP4/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -315,7 +341,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Iseryuiseki.AlarmAPP4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

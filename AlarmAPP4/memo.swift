@@ -1,3 +1,5 @@
+/*
+
 //  ViewController.swift
 //  AlarmAPP4
 //  Created by  on 2020/12/28.
@@ -6,7 +8,6 @@
 
 
 import UIKit
-import AVFoundation
 
 class ViewController: UIViewController {
     
@@ -14,22 +15,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var NowTime: UILabel!
     @IBOutlet weak var setTimeee: UILabel!
-    //追加したもの１２/３１
-    @IBOutlet weak var set: UIButton!
-    @IBOutlet weak var move: UIButton!
-    
-    
     //設定した時間を代入する。
     private var tempTime: String = "00:00:00"
     private var setTime : String = "00:00:00"
     var timer: Timer!
     var alartTime = Date()
     private var onAlartTime: [String] = []
+    
     var timerr = Timerr()
-    var stop = false
-    
-    var notification = Notification()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,12 +32,15 @@ class ViewController: UIViewController {
         // 時間管理してくれる (テキスト用)
         getNowTime2()
         _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(getNowTime2), userInfo: nil, repeats: true)
+        // 時間管理してくれる
         updateee()
         _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateee), userInfo: nil, repeats: true)
+        
         for time in onAlartTime {
             print("onAlartTime:\(time)")
         }
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -52,6 +48,48 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+    }
+    /*
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        timer.invalidate()
+        timer = nil
+    }
+ */
+    
+    
+    @objc func updateee() {
+        
+        // 現在時刻を取得
+        let nowTimeee = getNowTimeee()
+        // timeLabelに反映
+        NowTime.text = nowTimeee
+        //1秒ごとに取得している？
+        print("nowtime:\(nowTimeee)")
+        // 現在時刻が設定時刻と一緒なら
+        if setTime == "00:00:00" {
+        }else{
+            if nowTimeee >= setTime {
+                print("時間になったよ！！！")
+                
+            }else {
+                print("まだだよ！")
+            }
+ 
+        }
+ 
+    }
+    
+    func getNowTimeee() -> String {
+        // 現在時刻を取得
+        let nowTime: NSDate = NSDate()
+        // 成形する
+        let format = DateFormatter()
+        format.dateFormat = "HH:mm:ss"
+        // let nowTimeStr = format.stringFromDate(nowTime)
+        let nowTimeStr = format.string(from: nowTime as Date)
+        // 成形した時刻を文字列として返す
+        return nowTimeStr
     }
     
     
@@ -67,18 +105,12 @@ class ViewController: UIViewController {
         print(tempTime)
     }
     
-    
-    @IBAction func set(_ sender: Any) {
-        move.isHidden = false
-    }
-    
-    
-    @IBAction func move(_ sender: Any) {
-        self.performSegue(withIdentifier: "toSecond", sender: nil)
-    }
-    
-    
-    @IBAction func Button2(_ sender: Any) {
+    @IBAction func Button(_ sender: AnyObject) {
+        
+        timerr.selectedWakeUpTime = datePicker.date
+        timerr.time()
+        
+        
         // アラームをセット
         setTime = tempTime
         // date pickerでセットした値を代入
@@ -86,59 +118,18 @@ class ViewController: UIViewController {
         //取得できている！
         print(datePicker.date)
         //設定した時間
-        setTimeee.text = "時間をセットしたよ！"
-        let format2 = DateFormatter()
-        format2.dateFormat = "HH時mm分ss秒"
-        NowTime.text =  "起床の時間 : " + "\(format2.string(from: datePicker.date))"
+        NowTime.text = tempTime
+        setTimeee.text = setTime
+ 
         
-    }
-    
-    
-    @objc func updateee() {
-        // 現在時刻を取得
-        let nowTimeee = getNowTimeee()
-        //1秒ごとに取得している.
-        print("nowtime:\(nowTimeee)")
-        // 現在時刻が設定時刻と一緒なら
-        if setTime == "00:00:00" {
-        }else{
-            if nowTimeee == setTime {
-                print("時間になったよ！！！")
-                
-                move.isHidden = false
-                stop = true
-                
-                if notification.not1 == false {
-                //通知ができた！！！！６４個まで！！
-                notification.n()
-                }else {
-                   // notification.n1()
-                    print("dsadasdsdasdsdsadsdsdsadsd")
-                }
-                //時間になったら、画面遷移をする！
-                //self.performSegue(withIdentifier: "toSecond", sender: nil)
-                
-            }else{
-                ///時間を過ぎたら、機能なし。　→変更の余地あり。
-                if nowTimeee > setTime {
-                    //  print("時間が過ぎたよ！")
-                }else{
-                    print("まだだよ！")
-                }
-            }
-        }
-    }
-    
-    
-    func getNowTimeee() -> String {
-        // 現在時刻を取得
-        let nowTime: NSDate = NSDate()
-        // 成形する
-        let format = DateFormatter()
-        format.dateFormat = "HH:mm:ss"
-        let nowTimeStr = format.string(from: nowTime as Date)
-        // 成形した時刻を文字列として返す
-        return nowTimeStr
+        let storyboard: UIStoryboard = self.storyboard!
+        let nextView = storyboard.instantiateViewController(withIdentifier: "view1") as! sleepTime
+        nextView.modalPresentationStyle = .fullScreen
+        self.present(nextView, animated: true, completion: nil)
+        
+        print("時間を設定したよ")
+        
+        
     }
     
     //表示のためのもの
@@ -158,3 +149,5 @@ class ViewController: UIViewController {
         return nowTime2
     }
 }
+
+ */
