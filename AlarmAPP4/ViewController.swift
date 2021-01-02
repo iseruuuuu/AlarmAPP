@@ -14,10 +14,15 @@ class ViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var NowTime: UILabel!
     @IBOutlet weak var setTimeee: UILabel!
+    
+    @IBOutlet weak var setButton: UIButton!
+    
+    
     //追加したもの１２/３１
     @IBOutlet weak var set: UIButton!
     @IBOutlet weak var move: UIButton!
     
+    @IBOutlet weak var notSet: UIButton!
     
     //設定した時間を代入する。
     private var tempTime: String = "00:00:00"
@@ -30,11 +35,24 @@ class ViewController: UIViewController {
     
     var notification = Notification()
     
+    var app = AppDelegate()
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setButton.layer.borderWidth = 3
+        setButton.layer.borderColor = UIColor.blue.cgColor
+        setButton.layer.cornerRadius = 11.0
+        
+        move.layer.borderWidth = 3
+        move.layer.borderColor = UIColor.red.cgColor
+        move.layer.cornerRadius = 11.0
         //datePickerの表示の設定
-        datePicker.datePickerMode = UIDatePicker.Mode.time
+        //datePicker.datePickerMode = UIDatePicker.Mode.time
+        datePicker.datePickerMode = .time
         datePicker.setDate(Date(), animated: false)
         // 時間管理してくれる (テキスト用)
         getNowTime2()
@@ -44,6 +62,9 @@ class ViewController: UIViewController {
         for time in onAlartTime {
             print("onAlartTime:\(time)")
         }
+       
+        print(app.notification11)
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -61,7 +82,7 @@ class ViewController: UIViewController {
         let format = DateFormatter()
         //時間を変換
         //format.dateFormat = "現在の時間：" + "HH時mm分ss秒"
-        format.dateFormat = "HH:mm:ss"
+        format.dateFormat = "HH:mm:00"
         // 一時的にDPの値を保持
         tempTime = format.string(from: datePicker.date)
         print(tempTime)
@@ -70,6 +91,14 @@ class ViewController: UIViewController {
     
     @IBAction func set(_ sender: Any) {
         move.isHidden = false
+        //false
+        print(app.notification11)
+    }
+    
+    
+    
+    @IBAction func notSet(_ sender: Any) {
+        self.performSegue(withIdentifier: "toSecond2", sender: nil)
     }
     
     
@@ -79,6 +108,12 @@ class ViewController: UIViewController {
     
     
     @IBAction func Button2(_ sender: Any) {
+        
+        //もし通知をオフにしていたら、設定案内画面に飛ぶ。
+        if app.notification11 == true {
+            print("通知を設定してね！")
+            self.performSegue(withIdentifier: "toSecond2", sender: nil)
+        }else{
         // アラームをセット
         setTime = tempTime
         // date pickerでセットした値を代入
@@ -88,9 +123,10 @@ class ViewController: UIViewController {
         //設定した時間
         setTimeee.text = "時間をセットしたよ！"
         let format2 = DateFormatter()
-        format2.dateFormat = "HH時mm分ss秒"
+        format2.dateFormat = "HH時mm分00秒"
         NowTime.text =  "起床の時間 : " + "\(format2.string(from: datePicker.date))"
         
+    }
     }
     
     
@@ -113,7 +149,6 @@ class ViewController: UIViewController {
                 notification.n()
                 }else {
                    // notification.n1()
-                    print("dsadasdsdasdsdsadsdsdsadsd")
                 }
                 //時間になったら、画面遷移をする！
                 //self.performSegue(withIdentifier: "toSecond", sender: nil)

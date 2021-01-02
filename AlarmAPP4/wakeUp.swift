@@ -17,15 +17,26 @@ class wakeUp: UIViewController,AVAudioPlayerDelegate {
     var gameIsActive = true
     
     
+    
+    
     @IBOutlet weak var time1: UILabel!
     @IBOutlet weak var time2: UILabel!
     
-    @IBOutlet weak var button1: UIButton!
+    @IBOutlet weak var again: UIButton!
     @IBOutlet weak var finishButton: UIButton!
     
     var viewController = ViewController()
+    var Notfication = Notification()
     
     override func viewDidLoad() {
+        again.layer.borderWidth = 3
+        again.layer.borderColor = UIColor.red.cgColor
+        again.layer.cornerRadius = 11.0
+        
+        finishButton.layer.borderWidth = 3
+        finishButton.layer.borderColor = UIColor.blue.cgColor
+        finishButton.layer.cornerRadius = 11.0
+        
         
     }
     
@@ -64,7 +75,7 @@ class wakeUp: UIViewController,AVAudioPlayerDelegate {
                     time2.text = "残念！もう一度挑戦してみよう"
                 }
                 
-                button1.isHidden = false
+                again.isHidden = false
                 time1.isHidden = false
                 time2.isHidden = false
                 return
@@ -80,11 +91,10 @@ class wakeUp: UIViewController,AVAudioPlayerDelegate {
         }
         if gameIsActive == false {
             time2.isHidden = false
-            //ボタン
-            button1.isHidden = true
+            again.isHidden = true
             finishButton.isHidden = false
             time2.isHidden = false
-            time2.text = "クリア！"
+            time2.text = "クリア！おめでとう！"
         }
     }
     
@@ -95,8 +105,7 @@ class wakeUp: UIViewController,AVAudioPlayerDelegate {
         gameState = [0, 0, 0, 0, 0, 0, 0, 0, 0]
         gameIsActive = true
         activePlayer = 1
-        
-        button1.isHidden = true
+        again.isHidden = true
         time2.isHidden = true
         
         for i in 1...9
@@ -113,15 +122,19 @@ class wakeUp: UIViewController,AVAudioPlayerDelegate {
         dismiss(animated: true, completion:  nil)
         // 通知の削除
         viewController.stop = false
+        
+        Notfication.stopNot = true
+        
+        //今のところは、通知が一回で終わってしまう。
         // 通知を全削除する
-        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-       // viewController.move.isHidden = true
+        //  UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        // viewController.move.isHidden = true
         
         // 指定した通知を削除する
         let identifiers = ["identifier-1", "identifier-10", "identifier-100"]
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
+        print("タイマーを止めたよ！")
         
-     
     }
 }
 
