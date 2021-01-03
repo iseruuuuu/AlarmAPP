@@ -52,6 +52,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
     
+    private func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+         // Override point for customization after application launch.
+
+         return true
+     }
+    
     
     func applicationWillResignActive(_ application: UIApplication) {
         self.backgroundTaskID = application.beginBackgroundTask(){
@@ -64,7 +70,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         application.endBackgroundTask(self.backgroundTaskID)
     }
-    
 }
 
 // 通知を受け取ったときの処理

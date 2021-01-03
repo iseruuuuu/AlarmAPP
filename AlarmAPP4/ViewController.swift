@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var set: UIButton!
     @IBOutlet weak var move: UIButton!
     
-    @IBOutlet weak var notSet: UIButton!
+    
     
     //設定した時間を代入する。
     private var tempTime: String = "00:00:00"
@@ -57,6 +57,7 @@ class ViewController: UIViewController {
         // 時間管理してくれる (テキスト用)
         getNowTime2()
         _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(getNowTime2), userInfo: nil, repeats: true)
+        
         updateee()
         _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateee), userInfo: nil, repeats: true)
         for time in onAlartTime {
@@ -91,10 +92,7 @@ class ViewController: UIViewController {
     
     
     
-    @IBAction func notSet(_ sender: Any) {
-        
-    }
-    
+  
     
     @IBAction func move(_ sender: Any) {
         self.performSegue(withIdentifier: "toSecond", sender: nil)
@@ -137,6 +135,12 @@ class ViewController: UIViewController {
     
     
     @objc func updateee() {
+        
+        if UIApplication.shared.applicationState == .active {
+          
+        }else{
+           //print("Background: \(NowTime)")
+        }
         // 現在時刻を取得
         let nowTimeee = getNowTimeee()
         //1秒ごとに取得している.

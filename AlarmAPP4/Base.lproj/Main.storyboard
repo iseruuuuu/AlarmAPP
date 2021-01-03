@@ -240,15 +240,6 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Al-15-WJX">
-                                <rect key="frame" x="76" y="631" width="264" height="77"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="通知をオンにしにいく"/>
-                                <connections>
-                                    <action selector="notSet:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zDJ-T9-shU"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yRN-yB-aD7">
                                 <rect key="frame" x="7" y="471" width="70" height="61"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -267,7 +258,6 @@
                         <outlet property="datePicker" destination="XWv-Yi-Idj" id="Jsh-uX-oWV"/>
                         <outlet property="move" destination="Gev-NS-KM6" id="t2G-e8-zX1"/>
                         <outlet property="myLabel" destination="ZqO-g7-9l8" id="taU-NO-MiQ"/>
-                        <outlet property="notSet" destination="1Al-15-WJX" id="KJa-Nv-ugO"/>
                         <outlet property="set" destination="yRN-yB-aD7" id="sW0-dL-Jr1"/>
                         <outlet property="setButton" destination="v0Q-jT-Icc" id="FWT-lz-Bf8"/>
                         <outlet property="setTimeee" destination="TJP-zU-SoR" id="WDm-OU-LGl"/>
