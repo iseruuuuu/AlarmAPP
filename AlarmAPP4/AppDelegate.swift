@@ -11,7 +11,7 @@ import os
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    //var viewcontroller = ViewController()
+  
     
     
     //バックグラウンドでの処理内容
@@ -19,8 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var backgroundTaskID : UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier(rawValue: 0)
     
     
-    //ここの初期値しか使われていない？
-    var notification11 = false
+   
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -30,17 +29,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             (granted, _) in
             if granted{
                 UNUserNotificationCenter.current().delegate = self
-                print("通知をオンにしたよ")
+                print("通知オン")
             }
             else {
-                print("通知をオフにしたよ")
-                //もし通知がオフになったら、trueにする。
-                //self.notification11 = true
-               // print(self.notification11)
-              
-                //通知がオフにされた時に、指定したページを出したい！
-                //self.performSegue(withIdentifier: "toSecond", sender: nil)
-                
+                print("通知オフ")
             }
         }
         return true

@@ -127,8 +127,8 @@ class wakeUp: UIViewController,AVAudioPlayerDelegate {
         
         //今のところは、通知が一回で終わってしまう。
         // 通知を全削除する
-        //  UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-        // viewController.move.isHidden = true
+          UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+       
         
         // 指定した通知を削除する
         let identifiers = ["identifier-1", "identifier-10", "identifier-100"]

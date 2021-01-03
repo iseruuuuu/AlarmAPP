@@ -16,10 +16,8 @@ class Notification: UIViewController {
     override func viewDidLoad() {
         
     }
+    
     func n() {
-        
-        if stopNot == false {
-        
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]) { (granted, error) in
             guard granted else {
@@ -30,13 +28,12 @@ class Notification: UIViewController {
                 content.title = "上司"
                 content.body = "起きろ！！朝だぞ！ \(i)回目！！"
                 content.sound = UNNotificationSound.default
+                //通知をリピートしたいけど６０秒開けなければならない。
                 let trigger = UNTimeIntervalNotificationTrigger.init(timeInterval: TimeInterval(0 + (3 * i)), repeats: false)
                 let request = UNNotificationRequest.init(identifier: "identifier-\(i)", content: content, trigger: trigger)
                 UNUserNotificationCenter.current().add(request)
+                
             }
-        }
-        }else{
-            print("通知が終わった")
         }
     }
     

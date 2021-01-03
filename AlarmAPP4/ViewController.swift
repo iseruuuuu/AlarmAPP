@@ -30,7 +30,7 @@ class ViewController: UIViewController {
     var timer: Timer!
     var alartTime = Date()
     private var onAlartTime: [String] = []
-    var timerr = Timerr()
+    
     var stop = false
     
     var notification = Notification()
@@ -62,10 +62,9 @@ class ViewController: UIViewController {
         for time in onAlartTime {
             print("onAlartTime:\(time)")
         }
-       
-        print(app.notification11)
-        
     }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -76,14 +75,11 @@ class ViewController: UIViewController {
     }
     
     
+    
     //datePickerは特に必要なない？？
     @IBAction func datePicker(_ sender: AnyObject) {
-        // DPの値を成形
         let format = DateFormatter()
-        //時間を変換
-        //format.dateFormat = "現在の時間：" + "HH時mm分ss秒"
         format.dateFormat = "HH:mm:00"
-        // 一時的にDPの値を保持
         tempTime = format.string(from: datePicker.date)
         print(tempTime)
     }
@@ -91,14 +87,12 @@ class ViewController: UIViewController {
     
     @IBAction func set(_ sender: Any) {
         move.isHidden = false
-        //false
-        print(app.notification11)
     }
     
     
     
     @IBAction func notSet(_ sender: Any) {
-        self.performSegue(withIdentifier: "toSecond2", sender: nil)
+        
     }
     
     
@@ -109,24 +103,36 @@ class ViewController: UIViewController {
     
     @IBAction func Button2(_ sender: Any) {
         
-        //もし通知をオフにしていたら、設定案内画面に飛ぶ。
-        if app.notification11 == true {
-            print("通知を設定してね！")
-            self.performSegue(withIdentifier: "toSecond2", sender: nil)
-        }else{
-        // アラームをセット
-        setTime = tempTime
-        // date pickerでセットした値を代入
-        alartTime = (datePicker.date as NSDate) as Date
-        //取得できている！
-        print(datePicker.date)
-        //設定した時間
-        setTimeee.text = "時間をセットしたよ！"
-        let format2 = DateFormatter()
-        format2.dateFormat = "HH時mm分00秒"
-        NowTime.text =  "起床の時間 : " + "\(format2.string(from: datePicker.date))"
-        
-    }
+        if (UIApplication.shared.currentUserNotificationSettings?.types.contains( UIUserNotificationType.alert))! {
+            
+            move.isHidden = true
+            // アラームをセット
+            setTime = tempTime
+            // date pickerでセットした値を代入
+            alartTime = (datePicker.date as NSDate) as Date
+            //取得できている！
+            print(datePicker.date)
+            //設定した時間
+            setTimeee.text = "時間をセットしたよ！"
+            let format2 = DateFormatter()
+            format2.dateFormat = "HH時mm分00秒"
+            NowTime.text =  "起床の時間 : " + "\(format2.string(from: datePicker.date))"
+            
+        } else {
+            // ダイアログ(AlertControllerのインスタンス)を生成します
+            //   titleには、ダイアログの表題として表示される文字列を指定します
+            //   messageには、ダイアログの説明として表示される文字列を指定します
+            let dialog = UIAlertController(title: "通知をオンにしてください。", message: "協力お願いします", preferredStyle: .alert)
+            // 選択肢(ボタン)を2つ(OKとCancel)追加します
+            //   titleには、選択肢として表示される文字列を指定します
+            //styleには、通常は「.default」、キャンセルなど操作を無効にするものは「.cancel」、削除など注意して選択すべきものは「.destructive」を指定します
+            dialog.addAction(UIAlertAction(title: "設定する", style: .default, handler:{ action in
+                let url = NSURL(string:UIApplication.openSettingsURLString)!
+                UIApplication.shared.openURL(url as URL)
+            }))
+            // 生成したダイアログを実際に表示します
+            self.present(dialog, animated: true, completion: nil)
+        }
     }
     
     
@@ -139,24 +145,16 @@ class ViewController: UIViewController {
         if setTime == "00:00:00" {
         }else{
             if nowTimeee == setTime {
-                print("時間になったよ！！！")
-                
                 move.isHidden = false
                 stop = true
-                
-                if notification.not1 == false {
-                //通知ができた！！！！６４個まで！！
                 notification.n()
-                }else {
-                   // notification.n1()
-                }
-                //時間になったら、画面遷移をする！
-                //self.performSegue(withIdentifier: "toSecond", sender: nil)
-                
+                print("時間になったよ")
+             
             }else{
                 ///時間を過ぎたら、機能なし。　→変更の余地あり。
                 if nowTimeee > setTime {
-                    //  print("時間が過ぎたよ！")
+                    print("時間が過ぎたよ！")
+                   
                 }else{
                     print("まだだよ！")
                 }
@@ -168,11 +166,9 @@ class ViewController: UIViewController {
     func getNowTimeee() -> String {
         // 現在時刻を取得
         let nowTime: NSDate = NSDate()
-        // 成形する
         let format = DateFormatter()
         format.dateFormat = "HH:mm:ss"
         let nowTimeStr = format.string(from: nowTime as Date)
-        // 成形した時刻を文字列として返す
         return nowTimeStr
     }
     

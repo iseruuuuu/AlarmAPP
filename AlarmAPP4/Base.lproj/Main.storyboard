@@ -240,11 +240,11 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Al-15-WJX">
-                                <rect key="frame" x="76" y="455" width="264" height="77"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Al-15-WJX">
+                                <rect key="frame" x="76" y="631" width="264" height="77"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="通知ができていない"/>
+                                <state key="normal" title="通知をオンにしにいく"/>
                                 <connections>
                                     <action selector="notSet:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zDJ-T9-shU"/>
                                 </connections>
@@ -383,43 +383,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ayt-RW-6Pk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2646.376811594203" y="67.663043478260875"/>
-        </scene>
-        <!--Sleep Time-->
-        <scene sceneID="TQC-zP-Rlj">
-            <objects>
-                <viewController storyboardIdentifier="view1" id="3aD-vL-9JH" customClass="sleepTime" customModule="AlarmAPP4" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="center" id="pmy-Vq-pch">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="現在の時間 : 00時00分00秒" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="krG-fa-kK6">
-                                <rect key="frame" x="0.0" y="140" width="414" height="72"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7RI-C4-ye1">
-                                <rect key="frame" x="160" y="681" width="95" height="56"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="stop:" destination="3aD-vL-9JH" eventType="touchUpInside" id="9Ht-0b-HFW"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="LCR-ZK-ovy"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="qYq-Z3-kh9"/>
-                    <connections>
-                        <outlet property="stopButton" destination="7RI-C4-ye1" id="goa-zm-9Gf"/>
-                        <outlet property="timeLabel" destination="krG-fa-kK6" id="xaO-FU-jid"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="azq-7O-fsX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="960.86956521739137" y="753.26086956521749"/>
         </scene>
     </scenes>
     <resources>
