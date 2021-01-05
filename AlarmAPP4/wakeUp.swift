@@ -17,22 +17,19 @@ class wakeUp: UIViewController,AVAudioPlayerDelegate {
     var gameIsActive = true
     
     
-    
-    
     @IBOutlet weak var time1: UILabel!
     @IBOutlet weak var time2: UILabel!
-    
     @IBOutlet weak var again: UIButton!
     @IBOutlet weak var finishButton: UIButton!
     
     var viewController = ViewController()
     var Notfication = Notification()
+    var audioplayer:AVAudioPlayer = AVAudioPlayer()
     
     override func viewDidLoad() {
         again.layer.borderWidth = 3
         again.layer.borderColor = UIColor.red.cgColor
         again.layer.cornerRadius = 11.0
-        
         finishButton.layer.borderWidth = 3
         finishButton.layer.borderColor = UIColor.blue.cgColor
         finishButton.layer.cornerRadius = 11.0
@@ -60,9 +57,7 @@ class wakeUp: UIViewController,AVAudioPlayerDelegate {
         for combination in winningCombinations
         {
             if gameState[combination[0]] != 0 &&
-                // 0番目と1番目が同じコマか判断
                 gameState[combination[0]] == gameState[combination[1]] &&
-                // 1番目と2番目が同じコマか判断
                 gameState[combination[1]] == gameState[combination[2]]  {
                 gameIsActive = false
                 
@@ -118,18 +113,9 @@ class wakeUp: UIViewController,AVAudioPlayerDelegate {
     
     
     @IBAction func play(_ sender: Any) {
-        
         dismiss(animated: true, completion:  nil)
         // 通知の削除
-        viewController.stop = false
-        
-        Notfication.stopNot = true
-        
-        //今のところは、通知が一回で終わってしまう。
-        // 通知を全削除する
-          UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-       
-        
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         // 指定した通知を削除する
         let identifiers = ["identifier-1", "identifier-10", "identifier-100"]
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)

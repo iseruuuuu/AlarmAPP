@@ -7,11 +7,12 @@
 
 import UIKit
 import os
+import BackgroundTasks
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-  
+    
     
     
     //バックグラウンドでの処理内容
@@ -19,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var backgroundTaskID : UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier(rawValue: 0)
     
     
-   
+    
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -35,6 +36,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("通知オフ")
             }
         }
+        /*
+         // 第一引数: Info.plistで定義したIdentifierを指定
+         // 第二引数: タスクを実行するキューを指定。nilの場合は、デフォルトのバックグラウンドキューが利用されます。
+         // 第三引数: 実行する処理
+         BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.isekiSample.refresh", using: nil) { task in
+         // バックグラウンド処理したい内容 ※後述します
+         self.handleAppProcessing(task: task as! BGProcessingTask)
+         }
+         */
+        
         return true
     }
     
@@ -53,15 +64,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-         // Override point for customization after application launch.
-
-         return true
-     }
+        // Override point for customization after application launch.
+        
+        return true
+    }
     
     
     func applicationWillResignActive(_ application: UIApplication) {
         self.backgroundTaskID = application.beginBackgroundTask(){
-        [weak self] in
+            [weak self] in
             application.endBackgroundTask((self?.backgroundTaskID)!)
             self?.backgroundTaskID = UIBackgroundTaskIdentifier.invalid
         }
@@ -82,7 +93,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         // アプリ起動時も通知を行う
         completionHandler([.sound, .alert ])
         
-      //  self.notification11 = true
+        //  self.notification11 = true
     }
 }
 

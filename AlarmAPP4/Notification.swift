@@ -7,17 +7,23 @@
 
 import Foundation
 import UIKit
+import AVKit
 
 class Notification: UIViewController {
     var not1 = false
     
     var stopNot = false
-        
+    
+    //var audioPlayer : AVAudioPlayer!
+    var audioPlayer: AVAudioPlayer = AVAudioPlayer()
+    
+    
     override func viewDidLoad() {
         
     }
     
-    func n() {
+    
+    func n1() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]) { (granted, error) in
             guard granted else {
@@ -26,35 +32,58 @@ class Notification: UIViewController {
             for i in 1...64 {
                 let content = UNMutableNotificationContent()
                 content.title = "上司"
+                //content.body = "起きろ！！朝だぞ！ \(i)回目！！"
                 content.body = "起きろ！！朝だぞ！ \(i)回目！！"
                 content.sound = UNNotificationSound.default
-                //通知をリピートしたいけど６０秒開けなければならない。
                 let trigger = UNTimeIntervalNotificationTrigger.init(timeInterval: TimeInterval(0 + (3 * i)), repeats: false)
                 let request = UNNotificationRequest.init(identifier: "identifier-\(i)", content: content, trigger: trigger)
                 UNUserNotificationCenter.current().add(request)
-                
             }
         }
     }
     
-    func n1() {
+    
+    
+    
+    func n() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]) { (granted, error) in
             guard granted else {
                 return
             }
-            for i in 65...128 {
+            for i in 1...20 {
                 let content = UNMutableNotificationContent()
                 content.title = "上司"
+                //content.body = "起きろ！！朝だぞ！ \(i)回目！！"
                 content.body = "起きろ！！朝だぞ！ \(i)回目！！"
-                content.sound = UNNotificationSound.init(named: UNNotificationSoundName(rawValue: "sound.mp3"))
-                let trigger = UNTimeIntervalNotificationTrigger.init(timeInterval: TimeInterval(1 + (3 * i)), repeats: false)
+                content.sound = UNNotificationSound.default
+                let trigger = UNTimeIntervalNotificationTrigger.init(timeInterval: TimeInterval(60 + (3 * i)), repeats: true)
                 let request = UNNotificationRequest.init(identifier: "identifier-\(i)", content: content, trigger: trigger)
                 UNUserNotificationCenter.current().add(request)
-                if i == 128 {
-                    print("しつこい！")
-                }
             }
         }
     }
+    
+    func sound() {
+        //音源のパス
+        let soundFilePath = Bundle.main.path(forResource: "n90", ofType: "mp3")!
+        //パスのURL
+        let sound:URL = URL(fileURLWithPath: soundFilePath)
+        do {
+            //AVAudioPlayerを作成
+            audioPlayer = try AVAudioPlayer(contentsOf: sound, fileTypeHint:nil)
+        } catch {
+            print("Could not load file")
+        }
+        //再生
+        audioPlayer.play()
+    }
+    
+    func stopp() {
+        audioPlayer.stop()
+    }
+    
+    
+    
+    
 }
