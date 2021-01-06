@@ -24,7 +24,9 @@ class wakeUp: UIViewController,AVAudioPlayerDelegate {
     
     var viewController = ViewController()
     var Notfication = Notification()
+    
     var audioplayer:AVAudioPlayer = AVAudioPlayer()
+    
     
     override func viewDidLoad() {
         again.layer.borderWidth = 3
@@ -114,6 +116,11 @@ class wakeUp: UIViewController,AVAudioPlayerDelegate {
     
     @IBAction func play(_ sender: Any) {
         dismiss(animated: true, completion:  nil)
+        Notfication.noSound = true
+        print(Notfication.noSound)
+        //ボタンを押したら、「時間をセットする」を出現させる。
+        
+        // Notfication.stopp()
         // 通知の削除
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         // 指定した通知を削除する

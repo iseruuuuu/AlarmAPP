@@ -75,7 +75,34 @@ class ViewController: UIViewController {
     
     
     @IBAction func set(_ sender: Any) {
-        move.isHidden = false
+        
+        let dialog = UIAlertController(title: "タイマーを再設定しますか？", message: "選択してください", preferredStyle: .alert)
+        dialog.addAction(UIAlertAction(title: "通知を止める", style: .default, handler:{ action in
+            if self.getNowTimeee() <= self.setTime {
+                //まだ通知がくる時間ではない時は、通知を止める機能は動かない。
+                print("通知がまだないです。")
+            }else{
+                //通知が来ていたら、出現する。
+                self.move.isHidden = false
+                self.setButton.isHidden = false
+                
+            }
+        }))
+        dialog.addAction(UIAlertAction(title: "タイマーをリセットする", style: .default, handler:{ action in
+            
+            
+            self.setButton.isHidden = false
+            self.move.isHidden = false
+            self.setTimeee.text = "時間を設定しよう！"
+            self.NowTime.text =  "起床時刻 : 00時00分00秒"
+            //通知が来ないから、タイマーを止められる
+            self.setTime = String(0)
+            
+        }))
+        dialog.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        self.present(dialog, animated: true, completion: nil)
+        
+        
     }
     
     @IBAction func move(_ sender: Any) {
@@ -91,12 +118,10 @@ class ViewController: UIViewController {
             setTime = tempTime
             alartTime = (datePicker.date as NSDate) as Date
             print("設定した時間は:\(alartTime)")
-            
             setTimeee.text = "時間をセットしたよ！"
             let format2 = DateFormatter()
             format2.dateFormat = "HH時mm分00秒"
             NowTime.text =  "起床の時間 : " + "\(format2.string(from: datePicker.date))"
-            
         } else {
             let dialog = UIAlertController(title: "通知をオンにしてください。", message: "協力お願いします", preferredStyle: .alert)
             dialog.addAction(UIAlertAction(title: "設定する", style: .default, handler:{ action in
@@ -110,7 +135,9 @@ class ViewController: UIViewController {
     
     @objc func updateee() {
         
+        
         if UIApplication.shared.applicationState == .active {
+            
         }else{
             //print("Background: \(NowTime)")
         }
@@ -124,11 +151,13 @@ class ViewController: UIViewController {
             if nowTimeee == setTime {
                 move.isHidden = false
                 stop = true
+                
                 notification.n1()
                 print("時間になりました")
             }else{
                 ///時間を過ぎたら、機能なし。　→変更の余地あり。
                 if nowTimeee > setTime {
+                    
                     //print("時間が過ぎたよ！")
                     move.isHidden = false
                 }else{

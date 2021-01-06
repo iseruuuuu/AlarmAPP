@@ -9,13 +9,14 @@ import Foundation
 import UIKit
 import AVKit
 
-class Notification: UIViewController {
+class Notification: UIViewController, AVAudioPlayerDelegate {
     var not1 = false
     
-    var stopNot = false
+    var noSound = false
     
     //var audioPlayer : AVAudioPlayer!
-    var audioPlayer: AVAudioPlayer = AVAudioPlayer()
+    //  var audioPlayer: AVAudioPlayer = AVAudioPlayer()
+    var audioPlayer:AVAudioPlayer!
     
     
     override func viewDidLoad() {
@@ -32,7 +33,6 @@ class Notification: UIViewController {
             for i in 1...64 {
                 let content = UNMutableNotificationContent()
                 content.title = "上司"
-                //content.body = "起きろ！！朝だぞ！ \(i)回目！！"
                 content.body = "起きろ！！朝だぞ！ \(i)回目！！"
                 content.sound = UNNotificationSound.default
                 let trigger = UNTimeIntervalNotificationTrigger.init(timeInterval: TimeInterval(0 + (3 * i)), repeats: false)
@@ -54,8 +54,7 @@ class Notification: UIViewController {
             for i in 1...20 {
                 let content = UNMutableNotificationContent()
                 content.title = "上司"
-                //content.body = "起きろ！！朝だぞ！ \(i)回目！！"
-                content.body = "起きろ！！朝だぞ！ \(i)回目！！"
+                content.body = "起きろ！！朝だぞ！"
                 content.sound = UNNotificationSound.default
                 let trigger = UNTimeIntervalNotificationTrigger.init(timeInterval: TimeInterval(60 + (3 * i)), repeats: true)
                 let request = UNNotificationRequest.init(identifier: "identifier-\(i)", content: content, trigger: trigger)
@@ -65,22 +64,30 @@ class Notification: UIViewController {
     }
     
     func sound() {
-        //音源のパス
-        let soundFilePath = Bundle.main.path(forResource: "n90", ofType: "mp3")!
-        //パスのURL
-        let sound:URL = URL(fileURLWithPath: soundFilePath)
-        do {
-            //AVAudioPlayerを作成
-            audioPlayer = try AVAudioPlayer(contentsOf: sound, fileTypeHint:nil)
-        } catch {
-            print("Could not load file")
+        
+        if noSound == false {
+            //音源のパス
+            let soundFilePath = Bundle.main.path(forResource: "n90", ofType: "mp3")!
+            //パスのURL
+            let sound:URL = URL(fileURLWithPath: soundFilePath)
+            do {
+                //AVAudioPlayerを作成
+                audioPlayer = try AVAudioPlayer(contentsOf: sound, fileTypeHint:nil)
+            } catch {
+                print("Could not load file")
+            }
+            //再生
+            audioPlayer.delegate = self
+            self.audioPlayer.play()
+        }else{
+            print("音声が止まる")
+            self.audioPlayer.stop()
         }
-        //再生
-        audioPlayer.play()
     }
     
+    
     func stopp() {
-        audioPlayer.stop()
+        self.audioPlayer.stop()
     }
     
     
