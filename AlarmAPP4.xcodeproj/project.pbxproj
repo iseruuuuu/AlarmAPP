@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		940DD63225A8791600B29EFD /* ii.png in Resources */ = {isa = PBXBuildFile; fileRef = 940DD63125A8791600B29EFD /* ii.png */; };
 		942E58B9259C6F4C0079617E /* wakeUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942E58B8259C6F4C0079617E /* wakeUp.swift */; };
 		944191E6259962E600F91D2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944191E5259962E600F91D2E /* AppDelegate.swift */; };
 		944191E8259962E600F91D2E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944191E7259962E600F91D2E /* SceneDelegate.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		940DD63125A8791600B29EFD /* ii.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ii.png; sourceTree = "<group>"; };
 		942E58B8259C6F4C0079617E /* wakeUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wakeUp.swift; sourceTree = "<group>"; };
 		944191E2259962E600F91D2E /* AlarmAPP4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlarmAPP4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		944191E5259962E600F91D2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				9472A58925A46C5D00C0D281 /* n90.mp3 */,
 				944191EB259962E600F91D2E /* Main.storyboard */,
 				944191EE259962E600F91D2E /* Assets.xcassets */,
+				940DD63125A8791600B29EFD /* ii.png */,
 				944191F0259962E600F91D2E /* LaunchScreen.storyboard */,
 				944191F3259962E600F91D2E /* Info.plist */,
 				94768376259C46D9001017B2 /* memo.swift */,
@@ -137,6 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				944191F2259962E600F91D2E /* LaunchScreen.storyboard in Resources */,
+				940DD63225A8791600B29EFD /* ii.png in Resources */,
 				944191EF259962E600F91D2E /* Assets.xcassets in Resources */,
 				944191ED259962E600F91D2E /* Main.storyboard in Resources */,
 				9472A58A25A46C5D00C0D281 /* n90.mp3 in Resources */,

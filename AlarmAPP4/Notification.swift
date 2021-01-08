@@ -1,7 +1,6 @@
 //
 //  Notification.swift
 //  AlarmAPP4
-//
 //  Created by 井関竜太郎 on 2021/01/01.
 //
 

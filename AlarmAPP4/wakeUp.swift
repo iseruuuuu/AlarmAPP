@@ -127,7 +127,6 @@ class wakeUp: UIViewController,AVAudioPlayerDelegate {
         let identifiers = ["identifier-1", "identifier-10", "identifier-100"]
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
         print("タイマーを止めたよ！")
-        
     }
 }
 

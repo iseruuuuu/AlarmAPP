@@ -20,8 +20,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var backgroundTaskID : UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier(rawValue: 0)
     
     
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
+    {
+        UNUserNotificationCenter.current()
+            .requestAuthorization(options: [.badge, .sound, .alert], completionHandler: { (granted, error) in
+                if !granted {
+                    let alert = UIAlertController(title: "エラー", message: "プッシュ通知が拒否されています。設定から有効にしてください。", preferredStyle: .alert)
+                    let closeAction = UIAlertAction(title: "閉じる", style: .default) { _ in exit(1) }
+                    alert.addAction(closeAction)
+                    self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+                }
+            })
+        UNUserNotificationCenter.current().delegate = self
+        
+        return true
+    }
+   
+
+    func applicationDidEnterBackground(_ application: UIApplication) {
+   }
+
+    func applicationWillEnterForeground(_ application: UIApplication) {
+    }
+
+   
+
+    func applicationWillTerminate(_ application: UIApplication) {
+    }
+
     
     
+    
+    
+    
+    /*
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // 通知許可の取得
@@ -48,6 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
+ */
     
     // MARK: UISceneSession Lifecycle
     
@@ -83,6 +118,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification,
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
+    {
+        completionHandler([ .badge, .sound, .alert ])
+    }
+}
+
+/*
 // 通知を受け取ったときの処理
 extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
@@ -97,7 +143,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     }
 }
 
-
+*/
 
 
 

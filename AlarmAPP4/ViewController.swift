@@ -28,6 +28,8 @@ class ViewController: UIViewController {
     var notification = Notification()
     var app = AppDelegate()
     
+    var request:UNNotificationRequest!
+    
     
     
     
@@ -107,10 +109,27 @@ class ViewController: UIViewController {
     
     @IBAction func move(_ sender: Any) {
         self.performSegue(withIdentifier: "toSecond", sender: nil)
+        
+        
+        
+        let content = UNMutableNotificationContent()
+        content.title = "れんちょんからのお知らせ"
+        content.body = "もう朝なのん"
+        content.sound = UNNotificationSound.default
+        
+        if let path = Bundle.main.path(forResource: "ii", ofType: "png") {
+            content.attachments = [try! UNNotificationAttachment(identifier: "renchon", url: URL(fileURLWithPath: path), options: nil)]
+        }
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: true)
+        let request = UNNotificationRequest(identifier: "later", content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+        
     }
     
     
     @IBAction func Button2(_ sender: Any) {
+        
         
         //もし通知をオンにしていたら。
         if (UIApplication.shared.currentUserNotificationSettings?.types.contains( UIUserNotificationType.alert))! {
@@ -134,8 +153,6 @@ class ViewController: UIViewController {
     
     
     @objc func updateee() {
-        
-        
         if UIApplication.shared.applicationState == .active {
             
         }else{
