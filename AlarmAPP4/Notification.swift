@@ -55,6 +55,7 @@ class Notification: UIViewController, AVAudioPlayerDelegate {
                 content.title = "上司"
                 content.body = "起きろ！！朝だぞ！"
                 content.sound = UNNotificationSound.default
+                
                 let trigger = UNTimeIntervalNotificationTrigger.init(timeInterval: TimeInterval(60 + (3 * i)), repeats: true)
                 let request = UNNotificationRequest.init(identifier: "identifier-\(i)", content: content, trigger: trigger)
                 UNUserNotificationCenter.current().add(request)

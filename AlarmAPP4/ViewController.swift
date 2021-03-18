@@ -18,7 +18,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var set: UIButton!
     @IBOutlet weak var move: UIButton!
     
-    //設定した時間を代入する。
     private var tempTime: String = "00:00:00"
     private var setTime : String = "00:00:00"
     var timer: Timer!
@@ -130,7 +129,6 @@ class ViewController: UIViewController {
     
     @IBAction func Button2(_ sender: Any) {
         
-        
         //もし通知をオンにしていたら。
         if (UIApplication.shared.currentUserNotificationSettings?.types.contains( UIUserNotificationType.alert))! {
             move.isHidden = true
@@ -140,7 +138,7 @@ class ViewController: UIViewController {
             setTimeee.text = "時間をセットしたよ！"
             let format2 = DateFormatter()
             format2.dateFormat = "HH時mm分00秒"
-            NowTime.text =  "起床の時間 : " + "\(format2.string(from: datePicker.date))"
+            NowTime.text =  "終了時間 : " + "\(format2.string(from: datePicker.date))"
         } else {
             let dialog = UIAlertController(title: "通知をオンにしてください。", message: "協力お願いします", preferredStyle: .alert)
             dialog.addAction(UIAlertAction(title: "設定する", style: .default, handler:{ action in
